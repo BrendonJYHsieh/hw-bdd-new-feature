@@ -32,3 +32,14 @@ Scenario: can't find similar movies if we don't know director (sad path)
   When  I follow "Find Movies With Same Director"
   Then  I should be on the home page
   And   I should see "'Alien' has no director info"
+
+  Scenario: create a new movie with a director
+    Given I am on the new movie page
+    When  I fill in "Title" with "Gladiator"
+    And   I select "R" from "Rating"
+    And   I fill in "Director" with "Ridley Scott"
+    And   I press "Save Changes"
+    Then  I should be on the home page
+    And   I should see "Gladiator"
+    When  I follow "More about Gladiator"
+    Then  I should see "Ridley Scott"
